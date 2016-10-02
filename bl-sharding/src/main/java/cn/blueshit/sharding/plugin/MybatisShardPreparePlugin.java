@@ -78,7 +78,7 @@ public class MybatisShardPreparePlugin implements Interceptor {
         String targetSQL = sqlParser.toSQL();
         log.info("Sharding SQL:{}", targetSQL);
 
-        //利用反射设置当前BoundSql对应的sql属性为我们建立好的分页Sql语句
+        //利用反射设置当前BoundSql对应的sql属性为我们建立好的Sql语句 #参考分页插件
         Field sqlFiled = ReflectionUtils.findField(boundSql.getClass(), "sql");
         sqlFiled.setAccessible(true);
         sqlFiled.set(boundSql, targetSQL);
