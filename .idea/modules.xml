@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bl-common/bl-common.iml" filepath="$PROJECT_DIR$/bl-common/bl-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bl-controller/bl-controller.iml" filepath="$PROJECT_DIR$/bl-controller/bl-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bl-dao/bl-dao.iml" filepath="$PROJECT_DIR$/bl-dao/bl-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bl-service/bl-service.iml" filepath="$PROJECT_DIR$/bl-service/bl-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bl-sharding/bl-sharding.iml" filepath="$PROJECT_DIR$/bl-sharding/bl-sharding.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bl-test-web.iml" filepath="$PROJECT_DIR$/bl-test-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bl-web/bl-web.iml" filepath="$PROJECT_DIR$/bl-web/bl-web.iml" />
+    </modules>
+  </component>
+</project>

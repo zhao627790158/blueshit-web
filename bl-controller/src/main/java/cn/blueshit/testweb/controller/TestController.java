@@ -1,0 +1,65 @@
+package cn.blueshit.testweb.controller;
+
+import cn.blueshit.testweb.po.OrderTable;
+import cn.blueshit.testweb.service.TestOrderService;
+import cn.blueshit.testweb.utils.Persion;
+import org.apache.commons.lang.math.NumberUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Random;
+
+/**
+ * Created by zhaoheng on 16/8/31.
+ */
+@Controller
+public class TestController {
+
+
+    @Resource(name = "testOrderService")
+    private TestOrderService testOrderService;
+
+
+    @RequestMapping(value = "/test")
+    @ResponseBody
+    public Object testRestful(HttpServletRequest request, String test, Persion persion) throws Exception {
+        System.out.println(request);
+        System.out.println(persion.getName());
+        try {
+            int i = 1 / 0;
+            System.out.println("continue");
+        } catch (Exception e) {
+            System.out.println("execption");
+            throw e;
+        } finally {
+            throw new RuntimeException("run execption");
+        }
+
+    }
+
+    @RequestMapping(value = "/testInsert")
+    @ResponseBody
+    public Object testRestfulInsert() throws Exception {
+
+        OrderTable orderTable = new OrderTable();
+        orderTable.setOrderId(new Random().nextLong());
+
+        testOrderService.testInsertByOrderId(orderTable, 111);
+        return "xxx";
+
+    }
+
+    @RequestMapping(value = "/testSelect")
+    @ResponseBody
+    public Object testRestfulSelect(String orderId) throws Exception {
+
+        OrderTable orderTable = new OrderTable();
+        orderTable.setOrderId(NumberUtils.toLong(orderId));
+        return testOrderService.testSelectByOrderId(orderTable);
+
+    }
+}

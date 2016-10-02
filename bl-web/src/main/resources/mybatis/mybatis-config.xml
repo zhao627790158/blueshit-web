@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <plugins>
+        <plugin interceptor="cn.blueshit.sharding.plugin.MybatisShardPreparePlugin">
+            <property name="configsLocation" value="mybatis/mybatis-sharding-config.xml"/>
+            <property name="validateXsd" value="mybatis/mybatis-sharding-config.xsd"/>
+        </plugin>
+    </plugins>
+
+</configuration>

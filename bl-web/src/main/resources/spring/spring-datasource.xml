@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Mybatis配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></property>
+        <property name="dataSource" ref="mysqlDataSource"/>
+        <property name="mapperLocations" value="classpath:/mybatis/mapper/*.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="cn.blueshit.testweb.dao"/>
+    </bean>
+
+    <!-- 数据源父类：提供连接池配置 -->
+    <bean id="dataSourceBase" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${biz.jdbc.driverClassName}"/>
+
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${biz.jdbc.initialSize}"/>
+        <property name="minIdle" value="${biz.jdbc.minIdle}"/>
+        <property name="maxActive" value="${biz.jdbc.maxActive}"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="1000"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat"/>
+    </bean>
+
+    <bean id="dataSource_0" parent="dataSourceBase">
+        <property name="url" value="${biz.jdbc.url.0}"></property>
+        <property name="username" value="${biz.jdbc.username.0}"></property>
+        <property name="password" value="${biz.jdbc.password.0}"></property>
+    </bean>
+    <bean id="dataSource_1" parent="dataSourceBase">
+        <property name="url" value="${biz.jdbc.url.1}"></property>
+        <property name="username" value="${biz.jdbc.username.1}"></property>
+        <property name="password" value="${biz.jdbc.password.1}"></property>
+    </bean>
+    <bean id="dataSource_2" parent="dataSourceBase">
+        <property name="url" value="${biz.jdbc.url.2}"></property>
+        <property name="username" value="${biz.jdbc.username.2}"></property>
+        <property name="password" value="${biz.jdbc.password.2}"></property>
+    </bean>
+    <bean id="dataSource_3" parent="dataSourceBase">
+        <property name="url" value="${biz.jdbc.url.3}"></property>
+        <property name="username" value="${biz.jdbc.username.3}"></property>
+        <property name="password" value="${biz.jdbc.password.3}"></property>
+    </bean>
+
+    <bean id="mysqlDataSource" class="cn.blueshit.sharding.db.db.DynamicDataSource">
+        <property name="targetDataSources">
+            <!-- 标识符类型 -->
+            <map>
+                <entry key="db0" value-ref="dataSource_0"/>
+                <entry key="db1" value-ref="dataSource_1"/>
+                <entry key="db2" value-ref="dataSource_2"/>
+                <entry key="db3" value-ref="dataSource_3"/>
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="dataSource_0"/>
+    </bean>
+    <bean id="dbRuleSet" class="cn.blueshit.sharding.db.bean.DbRuleSet">
+        <!--规则类型 3,根据字符串-->
+        <property name="ruleType" value="3"></property>
+        <!--路由类型 2,分库分表 -->
+        <property name="routeType" value="2"></property>
+        <!--库数量-->
+        <property name="dbNumber" value="4"></property>
+        <!--表数量-->
+        <property name="tableNumber" value="2"></property>
+        <property name="dbKeyString" value="db0,db1,db2,db3"/>
+    </bean>
+
+    <bean id="dBRouter" class="cn.blueshit.sharding.db.DefaultDbRouterImpl">
+        <property name="dbRuleSetList">
+            <!-- 标识符类型 -->
+            <list>
+                <ref bean="dbRuleSet"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="mysqlDataSource"/>
+    </bean>
+
+</beans>
