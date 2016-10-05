@@ -5,7 +5,7 @@
        default-lazy-init="false">
 
 
-    <bean id="testOrderService" class="cn.blueshit.testweb.service.impl.TestOrderServiceImpl">
+    <bean id="testOrderService" class="cn.blueshit.web.service.impl.TestOrderServiceImpl">
         <property name="orderTableDao" ref="orderTableDao"/>
     </bean>
 </beans>

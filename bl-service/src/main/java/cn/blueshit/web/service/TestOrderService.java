@@ -1,6 +1,6 @@
-package cn.blueshit.testweb.service;
+package cn.blueshit.web.service;
 
-import cn.blueshit.testweb.po.OrderTable;
+import cn.blueshit.web.po.OrderTable;
 
 /**
  * Created by zhaoheng on 16/10/1.

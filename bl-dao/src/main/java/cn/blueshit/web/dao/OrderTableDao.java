@@ -1,7 +1,7 @@
-package cn.blueshit.testweb.dao;
+package cn.blueshit.web.dao;
 
 
-import cn.blueshit.testweb.po.OrderTable;
+import cn.blueshit.web.po.OrderTable;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderTableDao {

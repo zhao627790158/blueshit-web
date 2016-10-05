@@ -1,4 +1,4 @@
-package cn.blueshit.testweb.po;
+package cn.blueshit.web.po;
 
 /**
  * Created by zhaoheng on 16/10/1.

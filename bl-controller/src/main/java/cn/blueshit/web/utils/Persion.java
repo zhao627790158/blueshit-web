@@ -1,4 +1,4 @@
-package cn.blueshit.testweb.utils;
+package cn.blueshit.web.utils;
 
 import java.io.Serializable;
 

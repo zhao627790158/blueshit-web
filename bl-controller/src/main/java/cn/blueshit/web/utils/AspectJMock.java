@@ -1,7 +1,6 @@
-package cn.blueshit.testweb.utils;
+package cn.blueshit.web.utils;
 
 import com.google.common.base.Stopwatch;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,10 +18,10 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 @Aspect
-public class TestAspectJ {
+public class AspectJMock {
 
 
-    @Pointcut("execution(* cn.blueshit.testweb.controller.TestController.testRestful(..))")
+    @Pointcut("execution(* cn.blueshit.web.controller.ControllerBegin.testRestful(..))")
     public void deleGateway() {
     }
 

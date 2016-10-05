@@ -1,11 +1,10 @@
-package cn.blueshit.testweb.controller;
+package cn.blueshit.web.controller;
 
-import cn.blueshit.testweb.po.OrderTable;
-import cn.blueshit.testweb.service.TestOrderService;
-import cn.blueshit.testweb.utils.Persion;
+import cn.blueshit.web.po.OrderTable;
+import cn.blueshit.web.service.TestOrderService;
+import cn.blueshit.web.utils.Persion;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,7 +16,7 @@ import java.util.Random;
  * Created by zhaoheng on 16/8/31.
  */
 @Controller
-public class TestController {
+public class ControllerBegin {
 
 
     @Resource(name = "testOrderService")

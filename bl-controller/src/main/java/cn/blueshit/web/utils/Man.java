@@ -1,4 +1,4 @@
-package cn.blueshit.testweb.utils;
+package cn.blueshit.web.utils;
 
 /**
  * Created by zhaoheng on 16/9/1.

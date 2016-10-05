@@ -1,13 +1,11 @@
-package cn.blueshit.testweb.service.impl;
+package cn.blueshit.web.service.impl;
 
 import cn.blueshit.sharding.db.annotation.DoRoute;
-import cn.blueshit.testweb.dao.OrderTableDao;
-import cn.blueshit.testweb.po.OrderTable;
-import cn.blueshit.testweb.service.TestOrderService;
+import cn.blueshit.web.dao.OrderTableDao;
+import cn.blueshit.web.po.OrderTable;
+import cn.blueshit.web.service.TestOrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Random;
 
 /**
  * Created by zhaoheng on 16/10/1.

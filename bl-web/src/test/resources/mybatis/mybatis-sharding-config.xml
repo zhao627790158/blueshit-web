@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configs xmlns="http://cn.blueshit.com/schema/mybatis-sharding"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://cn.blueshit.com/schema/mybatis-sharding
+         mybatis-sharding-config.xsd">
+
+    <!-- 表名对应分表策略 -->
+    <strategy logicTable="orderTable" class="cn.blueshit.sharding.strategy.SimpleShardStrategy"/>
+
+
+</configs>
