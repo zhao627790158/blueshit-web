@@ -19,6 +19,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * Created by zhaoheng on 16/10/11.
+ *
+ * @WebAppConfiguration: 表明该类会使用web应用程序的默认根目录来载入ApplicationContext,
+ * 默认的更目录是"src/main/webapp", 如果需要更改这个更目录可以修改该注释的value值
+ * @RunWith: 使用 Spring-Test 框架
+ * @ContextConfiguration(location = ): 指定需要加载的spring配置文件的地址
  * 模拟真实的webmvc环境
  */
 @WebAppConfiguration
