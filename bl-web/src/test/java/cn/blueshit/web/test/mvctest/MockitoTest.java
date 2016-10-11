@@ -32,7 +32,7 @@ public class MockitoTest {
         LinkedList mockedList = mock(LinkedList.class);
         when(mockedList.get(0)).thenReturn("first");
         when(mockedList.get(1)).thenThrow(new RuntimeException("out of bound"));
-        // following prints "first"
+        // following prints "first"git
         System.out.println(mockedList.get(0));
         // following throws runtime exception
         //System.out.println(mockedList.get(1));
