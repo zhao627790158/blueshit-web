@@ -1,10 +1,11 @@
 package cn.blueshit.web.test.mvctest;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
 import org.junit.Test;
 import org.mockito.InOrder;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.*;
@@ -120,6 +121,49 @@ public class MockitoTest {
         inOrder1.verify(firstMock).add("was called first");
         inOrder1.verify(secondMock).add("was called second");
         // Oh, and A + B can be mixed together at will
+    }
+
+
+    public static Map<Integer, Map<Long, Integer>> filterZeroMap(Map<Integer, Map<Long, Integer>> activeMap) {
+        Map<Integer, Map<Long, Integer>> tempMap = activeMap;
+        Iterator<Integer> activeIterator = tempMap.keySet().iterator();
+        while (activeIterator.hasNext()) {
+            Integer activeId = activeIterator.next();
+            Map<Long, Integer> dateAndInventoryMap = tempMap.get(activeId);
+            Iterator<Map.Entry<Long, Integer>> dateAndInventoryIterator = dateAndInventoryMap.entrySet().iterator();
+            while (dateAndInventoryIterator.hasNext()) {
+                Map.Entry<Long, Integer> next = dateAndInventoryIterator.next();
+                if (next.getValue() == 0) {
+                    dateAndInventoryIterator.remove();
+                }
+            }
+        }
+        return tempMap;
+    }
+
+    @Test
+    public void test22222() {
+        Map<Integer, Map<Long, Integer>> tempMap = Maps.newHashMap();
+        Map<Integer, Map<Long, Integer>> activeMap = Maps.newHashMap();
+        Map<Long, Integer> test1 = new HashMap<Long, Integer>();
+        Map<Long, Integer> test2 = new HashMap<Long, Integer>();
+        Map<Long, Integer> test3 = new HashMap<Long, Integer>();
+        test1.put(100L, 100);
+        test2.put(200L, 200);
+        test3.put(200L, 0);
+        test1.put(1000L, 0);
+
+        activeMap.put(100, test1);
+        activeMap.put(200, test2);
+        activeMap.put(300, test3);
+        tempMap = filterZeroMap(activeMap);
+        System.out.println(JSON.toJSONString(tempMap));
+        //test rebae
+
+        //test
+        //test 2
+
+
     }
 
 }
