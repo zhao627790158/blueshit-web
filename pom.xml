@@ -14,6 +14,7 @@
         <module>bl-service</module>
         <module>bl-dao</module>
         <module>bl-common</module>
+        <module>bl-spring</module>
     </modules>
     <packaging>pom</packaging>
 
