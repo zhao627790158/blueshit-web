@@ -24,6 +24,13 @@ public class ControllerBegin {
     private TestOrderService testOrderService;
 
 
+    @RequestMapping("/index")
+    public String test11() {
+        return "index";
+
+    }
+
+
     @RequestMapping(value = "/test")
     @ResponseBody
     public Object testRestful(HttpServletRequest request, String test, Persion persion) throws Exception {
